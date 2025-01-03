@@ -27,9 +27,10 @@ func main() {
 	http.HandleFunc("/", homeHandler)
 	http.HandleFunc("/list", listHandler)
 	http.HandleFunc("/search", searchHandler)
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
-	fmt.Println("Server started on :8080")
-	log.Fatal(http.ListenAndServe("0.0.0.0:8080", nil))
+	fmt.Println("Server started on :8005")
+	log.Fatal(http.ListenAndServe("0.0.0.0:8005", nil))
 }
 
 func loadCSV(filename string) error {
